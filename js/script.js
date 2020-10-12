@@ -1,15 +1,24 @@
 
 // Fonction appelée lors du click du bouton
 function start() {
+
+
+  city = document.getElementById('city-input').value ;
+  
+  if (city == "")
+  {
+    city = "paris";
+  }
+  
   // Création de l'objet apiWeather
-  const apiWeather = new API_WEATHER();
+  const apiWeather = new API_WEATHER(city);
   // Appel de la fonction fetchTodayForecast
 
   apiWeather
     .fetchTodayForecast()
     .then(function(response) {
       // Récupère la donnée d'une API
-      const data = response.data;
+      const data = response.data; 
 
       // On récupère l'information principal
       const main = data.weather[0].main;
@@ -28,4 +37,44 @@ function start() {
       // Affiche une erreur
       console.error(error);
     });
+
+    end();
+
+}
+
+function end() {
+ 
+  city = document.getElementById('city-input').value ;
+  
+  if (city == "")
+  {
+    city = "paris";
+  }
+  
+  // Création de l'objet apiWeather
+  const apiWeather = new API_WEATHER(city);
+  // Appel de la fonction fetchTodayForecast
+
+  apiWeather
+    .getThreeDayForecast()
+    .then(function(response) {
+      // Récupère la donnée d'une API
+      const data = response.data; 
+
+      // On récupère l'information principal
+      const main = data.weather[0].main;
+      const description = data.weather[0].description;
+      console.log(description);
+      const temp = data.main.temp;
+      const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
+
+      // Modifier le DOM
+      
+      
+    })
+    .catch(function(error) {
+      // Affiche une erreur
+      console.error(error);
+    });
+
 }
