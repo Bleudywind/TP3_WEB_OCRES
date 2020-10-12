@@ -59,17 +59,26 @@ function end() {
     .getThreeDayForecast()
     .then(function(response) {
       // Récupère la donnée d'une API
-      const data = response.data; 
-
-      // On récupère l'information principal
-      const main = data.weather[0].main;
-      const description = data.weather[0].description;
-      console.log(description);
-      const temp = data.main.temp;
-      const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
-
-      // Modifier le DOM
       
+
+      
+      
+
+      
+      for (let i = 1; i < 4; ++i)
+      {
+        const data = response.data.list[i]; 
+        // On récupère l'information principal
+        const main = data.weather[0].main;
+        const description = data.weather[0].description;
+        const temp = data.temp.day;
+        const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
+        // Modifier le DOM
+        document.getElementById(i +'-forecast-main').innerHTML = main;
+        document.getElementById(i +'-forecast-more-info').innerHTML = description;
+        document.getElementById(i +'-icon-weather-container').innerHTML = icon;
+        document.getElementById(i +'-forecast-temp').innerHTML = `${temp}°C`;
+      }
       
     })
     .catch(function(error) {
