@@ -7,7 +7,7 @@ function start() {
   
   if (city == "")
   {
-    city = "paris";
+    city = "Paris";
   }
   
   // Création de l'objet apiWeather
@@ -48,7 +48,7 @@ function end() {
   
   if (city == "")
   {
-    city = "paris";
+    city = "Paris";
   }
   
   // Création de l'objet apiWeather

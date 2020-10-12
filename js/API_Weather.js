@@ -13,9 +13,10 @@ class API_WEATHER{
   constructor(city){
     // Si la ville n'est pas définit alors la ville par défault est Paris
     if(city === undefined){
-      city = "paris";
+      city = "Paris";
     }
     this.city = city;
+    document.getElementById('title-main-weather').innerHTML = `Aujourd'hui à ${city}`;
   }
 
   // Faire la requete à l'API openweathermap
